@@ -1,10 +1,12 @@
-"""OWNER acceptance tests for the Wordcount CLI goal (written by the OWNER, never by the coding agent)."""
+"""OWNER acceptance tests for the Wordcount CLI goal (written by the OWNER, never by the coding agent).
+
+The import is inside the test on purpose: until src/wordcount.py exists only these tests fail,
+and the rest of the suite still runs.
+"""
 import os
 import subprocess
 import sys
 from pathlib import Path
-
-from wordcount import count
 
 SRC = str(Path(__file__).resolve().parents[1] / "src")
 
@@ -16,6 +18,8 @@ def run(args, stdin=None):
 
 
 def test_count_function():
+    from wordcount import count
+
     assert count("a b\nc") == (1, 3, 5)
 
 
